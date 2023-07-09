@@ -30,7 +30,6 @@ class Application extends \Phalcon\Mvc\Model
     public function setId($id)
     {
         $this->id = $id;
-
         return $this;
     }
 
@@ -74,11 +73,11 @@ class Application extends \Phalcon\Mvc\Model
     {
         $this->setSchema("test");
         $this->setSource("application");
-        $this->hasMany('id', 'Themys\Models\ApplicationModule', 'id_1', ['alias' => 'ApplicationModule']);
+     /*   $this->hasMany('id', 'Themys\Models\ApplicationModule', 'id_1', ['alias' => 'ApplicationModule']);
         $this->hasMany('id', 'Themys\Models\Commander', 'id_1', ['alias' => 'Commander']);
         $this->hasMany('id', 'Themys\Models\Developpement', 'id_application', ['alias' => 'Developpement']);
         $this->hasMany('id', 'Themys\Models\Projet', 'id_application', ['alias' => 'Projet']);
-        $this->hasMany('id', 'Themys\Models\ProjetApplication', 'id', ['alias' => 'ProjetApplication']);
+        $this->hasMany('id', 'Themys\Models\ProjetApplication', 'id', ['alias' => 'ProjetApplication']);*/
     }
 
     /**

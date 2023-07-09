@@ -12,8 +12,29 @@ class CollaborateurController extends Controller
 
     public function indexAction($param=null)
     {
-        $collaborateurs = Collaborateur::find();
-        $this->view->setVar('collaborateurs', $collaborateurs);
+        $collaborateursData = [];
+
+        // Charger les données du module pour chaque client
+        foreach (Collaborateur::find() as $collaborateur) {
+            $id = $collaborateur->getId();
+            $primeEmbauche = $collaborateur->getPrimeDembauche();
+            $niveauCompetence = $collaborateur->getNiveauCompetence();
+            $nom = $collaborateur->getNom();
+            $prenom = $collaborateur->getPrenom();
+
+            // Ajouter les données du client au tableau $clientData
+            $collaborateursData[] = [
+                'id' => $id,
+                'primeEmbauche' => $primeEmbauche,
+                'niveauCompetence'=> $niveauCompetence,
+                'nom' => $nom,
+                'prenom'=>$prenom
+            ];
+        }
+
+        $this->view->setVar('collaborateurs', $collaborateursData);
+        // Charger la vue
+        $this->view->pick('collaborateur/index');
 
     }
 
