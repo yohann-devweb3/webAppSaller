@@ -20,7 +20,7 @@
         <tbody>
         <?php
         if (!empty($collaborateurs)) {
-            foreach ($collaborateurs as $row): ?>
+            foreach ($this->view->collaborateurs as $row): ?>
                 <tr>
                     <td><?php echo $row['id']; ?></td>
                     <td><?php echo $row['nom']; ?></td>

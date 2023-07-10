@@ -31,7 +31,7 @@ class DeveloppeurController extends Controller
 
         $this->view->setVar('developpeurs', $developpeursData);
         // Charger la vue
-        $this->view->pick('developpeur/index');
+
 
     }
     public function createAction()
@@ -41,37 +41,64 @@ class DeveloppeurController extends Controller
         {
             // Créer un nouveau collaborateur et enregistrer dans la base de données
             $developpeur = (new Developpeur())
-                ->setNom($this->request->getPost('nom', 'string'))
-                ->setPrenom($this->request->getPost('prenom', 'string'))
-                ->setPrimeDembauche($this->request->getPost('prime_embauche', 'int'))
-                ->setNiveauCompetence($this->request->getPost('niveau_competence', 'int'));
+                ->setidCollaborateur($this->request->getPost('id_collaborateur', 'int'))
+                ->setidEquipe($this->request->getPost('id_equipe', 'int'))
+                ->setindiceProduction($this->request->getPost('indice_production', 'int'))
+                ->setCompetence($this->request->getPost('niveau_competence', 'int'));
 
+
+            $this->view->setVar('collaborateurs', $developpeur);
             // Rediriger vers la page d'index pour afficher la liste mise à jour
-            if($developpeur->save()) return $this->response->redirect('themys/developpeur');
+            if($developpeur->save())  return $this->response->redirect('themys/developpeur');
         }
         else {
-            $equipeList=[];
-            // Charger les données du module pour chaque client
-            foreach (Equipe::find() as $equipe) {
-                $id = $equipe->getId();
-                $libelle = $equipe->getLibelle();
-                $idChefDeProjet = $equipe->getIdChefdeprojet();
 
 
-                // Ajouter les données du client au tableau $clientData
-                $equipeList[] = [
-                    'id' => $id,
-                    '$libelle' => $libelle,
-                    '$idChefDeProjet'=> $idChefDeProjet
-                ];
+
+            $collaborateurs = [];
+            foreach (Collaborateur::find() as $collaborateur) {
+                // Vérifier si le collaborateur n'a pas d'id_dev associé
+                // en effectuant une recherche dans la table Developpeur
+                $idCollaborateur = $collaborateur->getId();
+                $developpeur = Developpeur::findFirst([
+                    'conditions' => 'id_collaborateur = :idCollaborateur:',
+                    'bind' => ['idCollaborateur' => $idCollaborateur]
+                ]);
+
+                // Si le collaborateur n'a pas d'id_dev associé, on l'ajoute à la liste
+                if (!$developpeur) {
+                    $collaborateurs[] = [
+                        'id' => $collaborateur->getId(),
+                        'nom' => $collaborateur->getNom(),
+                        'prenom' => $collaborateur->getPrenom()
+                    ];
+                }
             }
 
-            // competence
+            // envoyer $collaborateurs à la vue
+            $this->view->setVar('collaborateurs', $collaborateurs);
             $this->view->setVar('niveauCompetence', Developpeur::enumerateNiveauxCompetence());
-            $this->view->setVar('equipe', $equipeList);
-
 
         }
+    }
+
+    public function deleteAction($id)
+    {
+        // Récupérer le collaborateur à supprimer
+        $developpeur= Developpeur::findFirst($id);
+
+        if ($developpeur) {
+            // Supprimer les projets liés
+            foreach ($developpeur->Projet as $projet) {
+                $projet->delete();
+            }
+
+            // Supprimer le collaborateur
+            $developpeur->delete();
+        }
+
+        // Rediriger vers la page d'index pour afficher la liste mise à jour
+        return $this->response->redirect('themys/developpeur');
     }
 }
 

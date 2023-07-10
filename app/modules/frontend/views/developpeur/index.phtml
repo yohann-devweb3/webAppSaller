@@ -13,6 +13,7 @@
             <th>Indice de production</th>
             <th>ID Equipe</th>
             <th>ID Collaborateur</th>
+            <th>Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -25,6 +26,11 @@
                     <td><?php echo $row['indiceProduction']; ?></td>
                     <td><?php echo $row['idEquipe']; ?></td>
                     <td><?php echo $row['idCollaborateur']; ?></td>
+                    <td>
+                        <button class="btn btn-danger" onclick="window.location.href='<?= $this->url->get('themys/developpeur/delete/'.$row['id']) ?>'">
+                            Supprimer
+                        </button>
+                    </td>
                 </tr>
             <?php endforeach;
         } ?>

@@ -3,8 +3,10 @@ declare(strict_types=1);
 
 namespace Themys\modules\frontend\controllers;
 
+use mysql_xdevapi\Collection;
 use Phalcon\Mvc\Controller;
 use Themys\Models\Collaborateur;
+use Themys\Models\Developpeur;
 use Themys\Models\Projet;
 
 class CollaborateurController extends Controller
@@ -13,23 +15,12 @@ class CollaborateurController extends Controller
     public function indexAction()
     {
         $collaborateursData = [];
-        $niveauCompetenceData= [];
-
-        foreach (Collaborateur::find()  as $collaborateur) {
-            $niveauCompetence = $collaborateur->getNiveauCompetence();
-
-            // Check if the niveauCompetence is not already in the array
-            if (!in_array($niveauCompetence, $niveauCompetenceData)) {
-                // Add the distinct niveauCompetence to the array
-                $niveauCompetence[] = $niveauCompetence;
-            }
-        }
 
         // Charger les données du module pour chaque client
         foreach (Collaborateur::find() as $collaborateur) {
             $id = $collaborateur->getId();
             $primeEmbauche = $collaborateur->getPrimeDembauche();
-            $niveauCompetence = $collaborateur->translateNiveau();
+            $niveauCompetence =$collaborateur->getNiveauCompetence();
             $nom = $collaborateur->getNom();
             $prenom = $collaborateur->getPrenom();
 
@@ -39,12 +30,11 @@ class CollaborateurController extends Controller
                 'primeEmbauche' => $primeEmbauche,
                 'niveauCompetence'=> $niveauCompetence,
                 'nom' => $nom,
-                'prenom'=>$prenom
+                'prenom'=>$prenom,
             ];
         }
 
         $this->view->setVar('collaborateurs', $collaborateursData);
-        $this->view->setVar('niveauCompetence', $niveauCompetenceData);
 
     }
     public function createAction()

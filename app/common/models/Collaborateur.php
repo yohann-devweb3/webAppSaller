@@ -2,6 +2,8 @@
 
 namespace Themys\Models;
 
+use http\Client\Request;
+
 class Collaborateur extends \Phalcon\Mvc\Model
 {
 
@@ -139,8 +141,9 @@ class Collaborateur extends \Phalcon\Mvc\Model
         return $this->niveau_competence;
     }
 
-    public function translateNiveau( ) : string
+    public function translateNiveau() : string
     {
+
         return self::translateNiveauCompetence($this->getNiveauCompetence());
     }
     /**
@@ -214,7 +217,7 @@ class Collaborateur extends \Phalcon\Mvc\Model
         ];
     }
 
-    private static function translateNiveauCompetence(int $niveau)
+    public static function translateNiveauCompetence(int $niveau)
     {
         switch ($niveau){
             case self::_NIVEAU_1_STAGIAIRE_:return 'STAGIAIRE';
