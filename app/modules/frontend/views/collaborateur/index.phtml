@@ -1,5 +1,30 @@
+<?php $this->partial('layouts/header'); ?>
+<div class="container">
 
-        <div class="container">
-            <?php echo "On est bon !" ;?>
-            <?php echo $this->view->getVar("param");?>
-        </div>
+   <p>Liste des collaborateurs</p>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Prénom</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php if (!empty($collaborateurs)) {
+            foreach ($collaborateurs as $collaborateur) { ?>
+                <tr>
+                    <td><?php echo $collaborateur->id; ?></td>
+                    <td><?php echo $collaborateur->nom; ?></td>
+                    <td><?php echo $collaborateur->prenom; ?></td>
+                </tr>
+            <?php }
+        } else { ?>
+            <tr>
+                <td colspan="3">Aucun collaborateur trouvé.</td>
+            </tr>
+        <?php } ?>
+        </tbody>
+    </table>
+</div>
+

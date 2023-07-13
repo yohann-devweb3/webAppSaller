@@ -1,1 +1,7 @@
-**.local.php
+.idea/*
+.phalcon/*
+cache/*
+vendor/*
+composer.lock
+!**/.gitkeep
+**/local.php

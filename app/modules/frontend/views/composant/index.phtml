@@ -1,23 +1,28 @@
+<?php $this->partial('layouts/header'); ?>
 <div class="container">
 
-   <p>Liste des chefs de projets</p>
+   <p>Liste des composants</p>
     <table class="table">
         <thead>
         <tr>
             <th>ID</th>
-            <th>Nom</th>
-            <th>Boost de production</th>
-            <th>ID Collaborateur</th>
+            <th>Type</th>
+            <th>Charge</th>
+            <th>Progression</th>
+            <th>Désignation</th>
+            <th>ID Module</th>
         </tr>
         </thead>
         <tbody>
-        <?php if (!empty($chefdeprojets)) {
-            foreach ($chefdeprojets as $chefdeprojet) { ?>
+        <?php if (!empty($composants)) {
+            foreach ($composants as $composant) { ?>
                 <tr>
-                    <td><?php echo $chefdeprojet->id; ?></td>
-                    <td><?php echo $chefdeprojet->nom_prenom; ?></td>
-                    <td><?php echo $chefdeprojet->boost_production; ?></td>
-                    <td><?php echo $chefdeprojet->id_collaborateur; ?></td
+                    <td><?php echo $composant->id; ?></td>
+                    <td><?php echo $composant->type; ?></td>
+                    <td><?php echo $composant->charge; ?></td>
+                    <td><?php echo $composant->progression; ?></td>
+                    <td><?php echo $composant->libelle; ?></td>
+                    <td><?php echo $composant->id_module; ?></td>
                 </tr>
             <?php }
         } else { ?>

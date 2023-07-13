@@ -4,16 +4,16 @@ declare(strict_types=1);
 namespace Themys\modules\frontend\controllers;
 
 use Phalcon\Mvc\Controller;
-use Themys\Models\Module;
+use Themys\Models\Composant;
 
 
-class ModuleController extends Controller
+class ComposantController extends Controller
 {
 
     public function indexAction($param=null)
     {
-        $modules = Module::find();
-        $this->view->setVar('modules', $modules);
+        $composants = Composant::find();
+        $this->view->setVar('composants', $composants);
 
     }
 

@@ -1,8 +1,23 @@
+<?php $this->partial('layouts/header'); ?>
+
 <div class="page-header">
-    <h1>Congratulations!</h1>
+    <h1>Liste des projets </h1>
 </div>
+        <?php if (!empty($projets)) {
+            foreach ($projets as $projet) { ?>
+                <tr>
+                    <td><?php echo $projet->id; ?></td>
+                    <td><?php echo $projet->libelle; ?></td>
+                    <td><?php echo $projet->prix; ?></td>
+                    <td><?php echo $projet->prix; ?></td>
+                </tr>
+            <?php }
+        } else { ?>
+            <tr>
+                <td colspan="3">Aucun projet trouvé.</td>
+            </tr>
+        <?php } ?>
 
-<p>You're now flying with Phalcon. Great things are about to happen!</p>
 
-<p>This page is located at <code>views/index/index.phtml</code></p>
+ <p><code>views/index/index.phtml</code></p>
 

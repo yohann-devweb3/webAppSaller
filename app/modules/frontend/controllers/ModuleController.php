@@ -4,16 +4,16 @@ declare(strict_types=1);
 namespace Themys\modules\frontend\controllers;
 
 use Phalcon\Mvc\Controller;
-use Themys\Models\Chefdeprojet;
+use Themys\Models\Module;
 
 
-class ChefdeprojetController extends Controller
+class ModuleController extends Controller
 {
 
     public function indexAction($param=null)
     {
-        $chefdeprojets = Chefdeprojet::find();
-        $this->view->setVar('chefdeprojets', $chefdeprojets);
+        $modules = Module::find();
+        $this->view->setVar('modules', $modules);
 
     }
 

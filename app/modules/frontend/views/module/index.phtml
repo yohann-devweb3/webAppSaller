@@ -1,28 +1,27 @@
+<?php $this->partial('layouts/header'); ?>
 <div class="container">
 
-   <p>Liste des chefs de projets</p>
+   <p>Liste des modules</p>
     <table class="table">
         <thead>
         <tr>
             <th>ID</th>
-            <th>Nom</th>
-            <th>Boost de production</th>
-            <th>ID Collaborateur</th>
+            <th>Libellé</th>
+
         </tr>
         </thead>
         <tbody>
-        <?php if (!empty($chefdeprojets)) {
-            foreach ($chefdeprojets as $chefdeprojet) { ?>
+        <?php if (!empty($modules)) {
+            foreach ($modules as $module) { ?>
                 <tr>
-                    <td><?php echo $chefdeprojet->id; ?></td>
-                    <td><?php echo $chefdeprojet->nom_prenom; ?></td>
-                    <td><?php echo $chefdeprojet->boost_production; ?></td>
-                    <td><?php echo $chefdeprojet->id_collaborateur; ?></td
+                    <td><?php echo $module->id; ?></td>
+                    <td><?php echo $module->libelle; ?></td>
+
                 </tr>
             <?php }
         } else { ?>
             <tr>
-                <td colspan="3">Aucun chef de projet trouvé.</td>
+                <td colspan="3">Aucun module trouvé.</td>
             </tr>
         <?php } ?>
         </tbody>
