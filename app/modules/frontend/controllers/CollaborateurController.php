@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Themys\Modules\Frontend\Controllers;
+namespace Themys\modules\frontend\controllers;
 
-class ChampionController extends ControllerBase
+class CollaborateurController extends ControllerBase
 {
 
     public function indexAction($param=null)

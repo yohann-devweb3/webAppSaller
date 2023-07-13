@@ -1,0 +1,31 @@
+<div class="container">
+
+   <p>Liste des chefs de projets</p>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Boost de production</th>
+            <th>ID Collaborateur</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php if (!empty($chefdeprojets)) {
+            foreach ($chefdeprojets as $chefdeprojet) { ?>
+                <tr>
+                    <td><?php echo $chefdeprojet->id; ?></td>
+                    <td><?php echo $chefdeprojet->nom_prenom; ?></td>
+                    <td><?php echo $chefdeprojet->boost_production; ?></td>
+                    <td><?php echo $chefdeprojet->id_collaborateur; ?></td
+                </tr>
+            <?php }
+        } else { ?>
+            <tr>
+                <td colspan="3">Aucun chef de projet trouvé.</td>
+            </tr>
+        <?php } ?>
+        </tbody>
+    </table>
+</div>
+
