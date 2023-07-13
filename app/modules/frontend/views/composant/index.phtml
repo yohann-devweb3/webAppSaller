@@ -1,28 +1,27 @@
-<?php $this->partial('layouts/header'); ?>
+<?php $this->partial('partials/header'); ?>
 <div class="container">
 
    <p>Liste des composants</p>
     <table class="table">
         <thead>
         <tr>
-            <th>ID</th>
             <th>Type</th>
             <th>Charge</th>
             <th>Progression</th>
             <th>Désignation</th>
-            <th>ID Module</th>
+            <th>Module</th>
         </tr>
         </thead>
         <tbody>
         <?php if (!empty($composants)) {
             foreach ($composants as $composant) { ?>
                 <tr>
-                    <td><?php echo $composant->id; ?></td>
-                    <td><?php echo $composant->type; ?></td>
-                    <td><?php echo $composant->charge; ?></td>
-                    <td><?php echo $composant->progression; ?></td>
-                    <td><?php echo $composant->libelle; ?></td>
-                    <td><?php echo $composant->id_module; ?></td>
+
+                    <td><?php echo $composant->getTypeLibelle(); ?></td>
+                    <td><?php echo $composant->getCharge(); ?></td>
+                    <td><?php echo $composant->getProgression(); ?></td>
+                    <td><?php echo $composant->getLibelle(); ?></td>
+                    <td> <?php echo $composant->getLibelleModule(); ?></td>
                 </tr>
             <?php }
         } else { ?>

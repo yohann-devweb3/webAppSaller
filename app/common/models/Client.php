@@ -34,6 +34,8 @@ class Client extends \Phalcon\Mvc\Model
      * @Column(column="raison_sociale", type="string", length=50, nullable=true)
      */
     protected $raison_sociale;
+    const _TYPE_1_SS2I = 1;
+    const _TYPE_2_TIERCE = 2;
 
     /**
      * Method to set the value of field id
@@ -127,6 +129,12 @@ class Client extends \Phalcon\Mvc\Model
         return $this->raison_sociale;
     }
 
+    public function getTypeSS2i(){
+        switch ($this->getType()){
+            case self::_TYPE_1_SS2I : return 'SS2I';
+            case self::_TYPE_2_TIERCE : return 'TIERCE';
+        }
+    }
     /**
      * Initialize method for model.
      */

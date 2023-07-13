@@ -4,15 +4,15 @@ declare(strict_types=1);
 namespace Themys\modules\frontend\controllers;
 
 use Phalcon\Mvc\Controller;
-use Themys\Models\Module;
+use Themys\Models\Client;
 
 
-class ModuleController extends Controller
+class ClientController extends Controller
 {
     public function indexAction($param=null)
     {
-        $modules = Module::find();
-        $this->view->setVar('modules', $modules);
+        $clients = Client::find();
+        $this->view->setVar('clients', $clients);
 
     }
 

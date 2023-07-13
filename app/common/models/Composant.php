@@ -2,8 +2,11 @@
 
 namespace Themys\Models;
 
+use Phalcon\Validation;
+
 class Composant extends \Phalcon\Mvc\Model
 {
+
 
     /**
      *
@@ -49,6 +52,10 @@ class Composant extends \Phalcon\Mvc\Model
      */
     protected $id_module;
 
+    const _TYPE_1_FRONTEND = 1;
+    const _TYPE_2_BACKEND= 2;
+    const _TYPE_3_DATABASE = 3;
+
     /**
      * Method to set the value of field id
      *
@@ -84,7 +91,6 @@ class Composant extends \Phalcon\Mvc\Model
     public function setCharge($charge)
     {
         $this->charge = $charge;
-
         return $this;
     }
 
@@ -144,7 +150,7 @@ class Composant extends \Phalcon\Mvc\Model
      */
     public function getType()
     {
-        return $this->type;
+        return intval($this->type);
     }
 
     /**
@@ -222,4 +228,48 @@ class Composant extends \Phalcon\Mvc\Model
         return parent::findFirst($parameters);
     }
 
+
+    /**
+     * @return string|void
+     */
+    public function getTypeLibelle(){
+        switch ($this->getType()){
+            case self::_TYPE_1_FRONTEND : return 'FRONTEND';
+            case self::_TYPE_2_BACKEND : return  'BACKEND';
+            case self::_TYPE_3_DATABASE: return 'DATABASE';
+        }
+    }
+    /**
+     * Returns the libelle of the associated module.
+     *
+     * @return string|null
+     */
+    public function getLibelleModule(): ?string
+    {
+        $module = Module::findFirst($this->getIdModule());
+
+        if ($module) {
+            return $module->getLibelle();
+        }
+
+        return null;
+    }
+    public function  validation(){
+        $validator= new Validation();
+        $validator->add(
+             'type',
+            new Validation\Validator\InclusionIn(
+                 [
+                     'template' => 'le champ :field doit avoir une avoir une valeur comprise entre 0 et 5',
+                     'message'=>'le champ :field doit avoir une avoir une valeur comprise entre 0 et 5',
+                     'domain' => [
+                         self::_TYPE_1_FRONTEND,
+                         self::_TYPE_2_BACKEND,
+                         self::_TYPE_3_DATABASE,
+                     ],
+                 ]
+            )
+        );
+        return $this->validate($validator);
+    }
 }
