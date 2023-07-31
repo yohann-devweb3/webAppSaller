@@ -5,23 +5,19 @@
     <table class="table">
         <thead>
         <tr>
+            <th>ID</th>
             <th>Libellé</th>
         </tr>
         </thead>
         <tbody>
         <?php if (!empty($modules)) {
-            foreach ($modules as $module) { ?>
+            foreach ($modules as $row): ?>
                 <tr>
-
-                    <td><?php echo $module->getLibelle(); ?></td>
-
+                    <td><?php echo $row['id']; ?></td>
+                    <td><?php echo $row['libelle']; ?></td>
                 </tr>
-            <?php }
-        } else { ?>
-            <tr>
-                <td colspan="3">Aucun module trouvé.</td>
-            </tr>
-        <?php } ?>
+            <?php endforeach;
+        } ?>
         </tbody>
     </table>
 </div>

@@ -8,24 +8,22 @@
             <th>ID</th>
             <th>Nom</th>
             <th>Boost de production</th>
-            <th>ID Collaborateur</th>
+            <th>Collaborateur</th>
         </tr>
         </thead>
         <tbody>
-        <?php if (!empty($chefdeprojets)) {
-            foreach ($chefdeprojets as $chefdeprojet) { ?>
+        <?php
+        if (!empty($chefdeprojets)) {
+            foreach ($chefdeprojets as $row): ?>
                 <tr>
-                    <td><?php echo $chefdeprojet->id; ?></td>
-                    <td><?php echo $chefdeprojet->nom_prenom; ?></td>
-                    <td><?php echo $chefdeprojet->boost_production; ?></td>
-                    <td><?php echo $chefdeprojet->id_collaborateur; ?></td
+                    <td><?php echo $row['id']; ?></td>
+                    <td><?php echo $row['nom_prenom']; ?></td>
+                    <td><?php echo $row['boost_production']; ?></td>
+
+                    <td><?php echo $row['idCollaborateur']; ?></td>
                 </tr>
-            <?php }
-        } else { ?>
-            <tr>
-                <td colspan="3">Aucun chef de projet trouvé.</td>
-            </tr>
-        <?php } ?>
+            <?php endforeach;
+        } ?>
         </tbody>
     </table>
 </div>

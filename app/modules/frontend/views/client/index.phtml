@@ -11,19 +11,15 @@
         </tr>
         </thead>
         <tbody>
-        <?php if (!empty($clients)) {
-            foreach ($clients as $client) { ?>
-                <tr>
-                    <td><?php echo $client->ss2i ; ?></td>
-                    <td><?php echo $client->ridet; ?></td>
-                    <td><?php echo $client->raison_sociale; ?></td>
-                </tr>
-            <?php }
-        } else { ?>
-            <tr>
-                <td colspan="3">Aucun client trouvé.</td>
-            </tr>
-        <?php } ?>
+          <?php if (!empty($clients)) {
+              foreach ($clients as $row): ?>
+              <tr>
+                  <td><?php echo $row['ss2i']; ?></td>
+                  <td><?php echo $row['ridet']; ?></td>
+                  <td><?php echo $row['raison_sociale']; ?></td>
+              </tr>
+              <?php endforeach;
+          } ?>
         </tbody>
     </table>
 </div>
