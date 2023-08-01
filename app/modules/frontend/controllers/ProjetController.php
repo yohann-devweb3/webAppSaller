@@ -10,11 +10,9 @@ use Themys\Models\Projet;
 
 class ProjetController extends Controller
 {
-
     public function indexAction($param=null)
     {
         $projetsData = [];
-
         // Charger les données du module pour chaque client
         foreach (Projet::find() as $projet) {
             $id = $projet->getId();
@@ -32,7 +30,6 @@ class ProjetController extends Controller
                 'idApplication' => $idApplication
             ];
         }
-
         $this->view->setVar('projets', $projetsData);
         // Charger la vue
         $this->view->pick('projet/index');
