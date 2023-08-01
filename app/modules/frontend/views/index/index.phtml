@@ -1,23 +1,31 @@
 <?php $this->partial('partials/header'); ?>
 
 <div class="page-header">
-    <h1>Liste des projets </h1>
+    <h1>Bienvenue sur Themys </h1>
 </div>
+
+<form method="post" action="/themys/equipe/" class="mt-5">
+    <p>Sélectionner un projet :</p>
+    <select name="projet" class="form-control">
         <?php if (!empty($projets)) {
             foreach ($projets as $projet) { ?>
-                <tr>
-                    <td><?php echo $projet->id; ?></td>
-                    <td><?php echo $projet->libelle; ?></td>
-                    <td><?php echo $projet->prix; ?></td>
-                    <td><?php echo $projet->prix; ?></td>
-                </tr>
+                <option value="  <?php echo $projet['id']; ?>">   <?php echo $projet['libelle']; ?> (<?php echo $projet['status']?>)</option>
             <?php }
-        } else { ?>
-            <tr>
-                <td colspan="3">Aucun projet trouvé.</td>
-            </tr>
-        <?php } ?>
+        } ?>
+    </select>
+
+    <button type="submit" class="btn btn-info mt-2" name="jouer_btn">Jouer</button>
+</form>
 
 
- <p><code>views/index/index.phtml</code></p>
+<?php
+// Vérifiez si le formulaire a été soumis (le bouton a été cliqué)
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['jouer_btn'])) {
+    jouer(); // Appeler la fonction "jouer()" lorsque le bouton est cliqué.
+}
+?>
+
+
+<p><code>views/index/index.phtml</code></p>
 

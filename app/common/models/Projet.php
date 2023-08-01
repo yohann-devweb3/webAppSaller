@@ -34,7 +34,11 @@ class Projet extends \Phalcon\Mvc\Model
      * @Column(column="statut", type="string", length='0','1','2','3','4', nullable=false)
      */
     protected $statut;
-
+    const _NIVEAU_1_DISPONIBLE_ = 1;
+    const _NIVEAU_2_ENCOURS_ = 2;
+    const _NIVEAU_3_PROGRESSION_ = 3;
+    const _NIVEAU_4_RECETTE_ = 4;
+    const _NIVEAU_5_TERMINE_ = 5;
     /**
      *
      * @var integer
@@ -246,7 +250,17 @@ class Projet extends \Phalcon\Mvc\Model
     {
         return $this->statut;
     }
-
+    public function getTranslateStatut( ) : string
+    {
+        switch ($this->getStatut()){
+            case self::_NIVEAU_1_DISPONIBLE_:return 'DISPONIBLE';
+            case self::_NIVEAU_2_ENCOURS_ :return 'EN COURS';
+            case self::_NIVEAU_3_PROGRESSION_:return 'PROGRESSION';
+            case self::_NIVEAU_4_RECETTE_:return 'RECETTE';
+            case self::_NIVEAU_5_TERMINE_:return 'TERMINE';
+            default : return 'Pas de niveau' ;
+        }
+    }
     /**
      * Returns the value of field id_application
      *

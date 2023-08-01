@@ -19,7 +19,7 @@ class ClientController extends Controller
 
         // Charger les données du module pour chaque client
         foreach (Client::find() as $client) {
-            $ss2i = $client->getSs2i();
+            $ss2i = $client->getTypeSS2i();
             $ridet = $client->getRidet();
             $raison_sociale = $client->getRaisonSociale();
 

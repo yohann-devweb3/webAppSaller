@@ -35,7 +35,7 @@ class Client extends \Phalcon\Mvc\Model
      */
     protected $raison_sociale;
     const _TYPE_1_SS2I = 1;
-    const _TYPE_2_TIERCE = 2;
+    const _TYPE_2_TIERCE = 0;
 
     /**
      * Method to set the value of field id
@@ -130,9 +130,9 @@ class Client extends \Phalcon\Mvc\Model
     }
 
     public function getTypeSS2i(){
-        switch ($this->getType()){
+        switch ($this->getSs2i()){
             case self::_TYPE_1_SS2I : return 'SS2I';
-            case self::_TYPE_2_TIERCE : return 'TIERCE';
+            case self::_TYPE_2_TIERCE : return '-';
         }
     }
     /**
