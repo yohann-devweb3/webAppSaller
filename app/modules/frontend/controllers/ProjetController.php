@@ -20,6 +20,7 @@ class ProjetController extends Controller
             $prix = $projet->getPrix();
             $status = $projet->getTranslateStatut();
             $idApplication = $projet->Application->getNom();
+            $idChefDeProjet = $projet->Chefdeprojet->getNomPrenom();
 
             // Ajouter les données du client au tableau $clientData
             $projetsData[] = [
@@ -27,7 +28,8 @@ class ProjetController extends Controller
                 'libelle' => $libelle,
                 'prix' => $prix,
                 'status' => $status,
-                'idApplication' => $idApplication
+                'idApplication' => $idApplication,
+                'idChefDeProjet' => $idChefDeProjet
             ];
         }
         $this->view->setVar('projets', $projetsData);

@@ -10,6 +10,7 @@
             <th>Prix</th>
             <th>Statut</th>
             <th>Application</th>
+            <th>Chef de projet</th>
         </tr>
         </thead>
         <tbody>
@@ -22,6 +23,7 @@
                     <td><?php echo $row['prix']; ?></td>
                     <td><?php echo $row['status']; ?></td>
                     <td><?php echo $row['idApplication']; ?></td>
+                    <td><?php echo $row['idChefDeProjet']; ?></td>
                 </tr>
             <?php endforeach;
         } ?>
