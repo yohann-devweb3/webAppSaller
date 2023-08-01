@@ -23,7 +23,7 @@ class ComposantController extends Controller
         foreach ($composants as $composant) {
 
             $id = $composant->getId();
-            $type = $composant->getType();
+            $type = $composant->getTypeLibelle();
             $charge = $composant->getCharge();
             $progression = $composant->getProgression();
             $libelle = $composant->getLibelle();

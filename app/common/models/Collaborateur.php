@@ -27,7 +27,9 @@ class Collaborateur extends \Phalcon\Mvc\Model
      * @Column(column="niveau_competence", type="string", length='1','2','3', nullable=true)
      */
     protected $niveau_competence;
-
+    const _NIVEAU_1_STAGIAIRE_ = 1;
+    const _NIVEAU_2_JUNIOR_ = 2;
+    const _NIVEAU_3_SENIOR_ = 3;
     /**
      *
      * @var string
@@ -137,6 +139,15 @@ class Collaborateur extends \Phalcon\Mvc\Model
         return $this->niveau_competence;
     }
 
+    public function translateNiveau( ) : string
+    {
+        switch ($this->getNiveauCompetence()){
+            case self::_NIVEAU_1_STAGIAIRE_:return 'STAGIAIRE';
+            case self::_NIVEAU_2_JUNIOR_ :return 'JUNIOR';
+            case self::_NIVEAU_3_SENIOR_:return 'SENIOR';
+            default : return 'Pas de niveau' ;
+        }
+    }
     /**
      * Returns the value of field nom
      *

@@ -20,7 +20,9 @@ class Developpeur extends \Phalcon\Mvc\Model
      * @Column(column="competence", type="string", length='1','2','3', nullable=true)
      */
     protected $competence;
-
+    const _NIVEAU_1_FRONTEND_ = 1;
+    const _NIVEAU_2_BACKEND_ = 2;
+    const _NIVEAU_3_DATABASE_ = 3;
     /**
      *
      * @var integer
@@ -126,7 +128,15 @@ class Developpeur extends \Phalcon\Mvc\Model
     {
         return $this->competence;
     }
-
+    public function getTranslateCompetence( ) : string
+    {
+        switch ($this->getCompetence()){
+            case self::_NIVEAU_1_FRONTEND_:return 'FRONTEND';
+            case self::_NIVEAU_2_BACKEND_ :return 'BACKEND';
+            case self::_NIVEAU_3_DATABASE_:return 'DATABASE';
+            default : return 'Pas de competence' ;
+        }
+    }
     /**
      * Returns the value of field indice_production
      *

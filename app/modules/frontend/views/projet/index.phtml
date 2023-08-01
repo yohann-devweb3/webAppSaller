@@ -1,25 +1,21 @@
 <?php $this->partial('partials/header'); ?>
 <div class="container">
 
-   <p>Liste des chefs de projets</p>
+   <p>Liste des applications</p>
     <table class="table">
         <thead>
         <tr>
             <th>ID</th>
             <th>Nom</th>
-            <th>Boost de production</th>
-            <th>Collaborateur</th>
         </tr>
         </thead>
         <tbody>
         <?php
-        if (!empty($chefdeprojets)) {
-            foreach ($chefdeprojets as $row): ?>
+        if (!empty($applications)) {
+            foreach ($applications as $row): ?>
                 <tr>
                     <td><?php echo $row['id']; ?></td>
-                    <td><?php echo $row['nom_prenom']; ?></td>
-                    <td><?php echo $row['boost_production']; ?></td>
-                    <td><?php echo $row['idCollaborateur']; ?></td>
+                    <td><?php echo $row['nom']; ?></td>
                 </tr>
             <?php endforeach;
         } ?>

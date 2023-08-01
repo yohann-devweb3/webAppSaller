@@ -18,7 +18,7 @@ class CollaborateurController extends Controller
         foreach (Collaborateur::find() as $collaborateur) {
             $id = $collaborateur->getId();
             $primeEmbauche = $collaborateur->getPrimeDembauche();
-            $niveauCompetence = $collaborateur->getNiveauCompetence();
+            $niveauCompetence = $collaborateur->translateNiveau();
             $nom = $collaborateur->getNom();
             $prenom = $collaborateur->getPrenom();
 
