@@ -9,27 +9,36 @@ use Themys\Models\Module;
 
 class ModuleController extends Controller
 {
-    public function indexAction($param=null)
+    public function indexAction($param = null)
     {
-        $modulesData = [];
+        // Récupérer les applications
+        $moduleData = Module::find();
 
-        // Charger les données du module pour chaque client
-        foreach (Module::find() as $module) {
-            $id = $module->getId();
-            $libelle = $module->getLibelle();
+        // Construire le contenu de la vue sous forme de chaîne de caractères
+        $viewContent = $this->buildViewContent($moduleData);
 
-            // Ajouter les données du client au tableau $clientData
-            $modulesData[] = [
-                'id' => $id,
-                'libelle' => $libelle,
-            ];
+        // Passer le contenu de la vue à la vue
+        $this->view->setVar( 'viewContent',$viewContent);
+    }
+    private function buildViewContent($moduleData)
+    {
+        $viewContent = '<div class="container">';
+        $viewContent .= '<p>Liste des modules</p>';
+        $viewContent .= '<table class="table">';
+        $viewContent .= '<thead><tr><th>ID</th><th>Nom</th></tr></thead>';
+        $viewContent .= '<tbody>';
+
+        foreach ($moduleData as $row) {
+            $id = $row->getId();
+            $libelle = $row->getLibelle();
+            $viewContent .= "<tr><td>{$id}</td><td>{$libelle}</td></tr>";
         }
 
-        $this->view->setVar('modules', $modulesData);
-        // Charger la vue
-        $this->view->pick('module/index');
+        $viewContent .= '</tbody>';
+        $viewContent .= '</table>';
+        $viewContent .= '</div>';
 
+        return $viewContent;
     }
-
 }
 

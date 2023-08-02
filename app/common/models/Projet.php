@@ -326,6 +326,7 @@ class Projet extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
+        $this->belongsTo('id_equipe', 'Themys\Models\Equipe', 'id', ['alias' => 'Equipe']);
         $this->setSchema("test");
         $this->setSource("projet");
         $this->hasMany('id', 'Themys\Models\ProjetApplication', 'id_1', ['alias' => 'ProjetApplication']);

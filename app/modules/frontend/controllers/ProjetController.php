@@ -6,13 +6,16 @@ namespace Themys\modules\frontend\controllers;
 use Phalcon\Mvc\Controller;
 use Themys\Models\Application;
 use Themys\Models\Projet;
-
+use Themys\Models\Equipe;
 
 class ProjetController extends Controller
 {
     public function indexAction($param=null)
     {
         $projetsData = [];
+
+
+
         // Charger les données du module pour chaque client
         foreach (Projet::find() as $projet) {
             $id = $projet->getId();
@@ -21,6 +24,7 @@ class ProjetController extends Controller
             $status = $projet->getTranslateStatut();
             $idApplication = $projet->Application->getNom();
             $idChefDeProjet = $projet->Chefdeprojet->getNomPrenom();
+            $idClient = $projet->Client->getNom();
 
             // Ajouter les données du client au tableau $clientData
             $projetsData[] = [
@@ -29,7 +33,8 @@ class ProjetController extends Controller
                 'prix' => $prix,
                 'status' => $status,
                 'idApplication' => $idApplication,
-                'idChefDeProjet' => $idChefDeProjet
+                'idChefDeProjet' => $idChefDeProjet,
+                'idClient' => $idClient
             ];
         }
         $this->view->setVar('projets', $projetsData);

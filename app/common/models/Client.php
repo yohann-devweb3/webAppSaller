@@ -36,6 +36,10 @@ class Client extends \Phalcon\Mvc\Model
     protected $raison_sociale;
     const _TYPE_1_SS2I = 1;
     const _TYPE_2_TIERCE = 0;
+    /**
+     * @var mixed
+     */
+    protected $nom;
 
     /**
      * Method to set the value of field id
@@ -108,7 +112,10 @@ class Client extends \Phalcon\Mvc\Model
     {
         return $this->ss2i;
     }
-
+    public function getNom()
+    {
+        return $this->nom;
+    }
     /**
      * Returns the value of field ridet
      *

@@ -1,24 +1,8 @@
 <?php $this->partial('partials/header'); ?>
 <div class="container">
-
-   <p>Liste des modules</p>
-    <table class="table">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Libellé</th>
-        </tr>
-        </thead>
-        <tbody>
-        <?php if (!empty($modules)) {
-            foreach ($modules as $row): ?>
-                <tr>
-                    <td><?php echo $row['id']; ?></td>
-                    <td><?php echo $row['libelle']; ?></td>
-                </tr>
-            <?php endforeach;
-        } ?>
-        </tbody>
-    </table>
+    <?php /** @var TYPE_NAME $viewContent */
+    echo $viewContent;?>
 </div>
+
+
 

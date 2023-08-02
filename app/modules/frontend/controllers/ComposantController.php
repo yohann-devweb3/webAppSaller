@@ -16,35 +16,37 @@ class ComposantController extends Controller
     {
         $composantsData = [];
 
-        $composants = Composant::find();
+        $composantsData = Composant::find();
+        // Construire le contenu de la vue sous forme de chaîne de caractères
+        $viewContent = $this->buildViewContent($composantsData);
 
-        // Charger les données du module pour chaque composant
+        // Passer le contenu de la vue à la vue
+        $this->view->setVar( 'viewContent',$viewContent);
+    }
+    private function buildViewContent($composantsData)
+    {
+        $viewContent = '<div class="container">';
+        $viewContent .= '<p>Liste des composants</p>';
+        $viewContent .= '<table class="table">';
+        $viewContent .= '<thead><tr><th>ID</th><th>Type</th><th>Charge</th><th>progression</th><th>libelle</th></tr></thead>';
+        $viewContent .= '<tbody>';
 
-        foreach ($composants as $composant) {
-
-            $id = $composant->getId();
-            $type = $composant->getTypeLibelle();
-            $charge = $composant->getCharge();
-            $progression = $composant->getProgression();
-            $libelle = $composant->getLibelle();
-            $libelleModule = $composant->getLibelleModule();
-
-            // Ajouter les données du composant au tableau $composantsData
-            $composantsData[] = [
-                'id' => $id,
-                'type' => $type,
-                'charge'=>$charge,
-                'progression'=>$progression,
-                'libelle'=>$libelle,
-                'libelleModule'=>$libelleModule
-            ];
+        foreach ($composantsData as $row) {
+            $id = $row->getId();
+            $type= $row->getTypeLibelle();
+            $charge= $row->getCharge();
+            $progression= $row->getCharge();
+            $libelleModule= $row->getLibelleModule();
+            $viewContent .= "<tr><td>{$id}</td><td>{$type}</td>";
+            $viewContent .= "<td>{$charge}</td><td>{$progression}</td><td>{$libelleModule}</td></tr>";
         }
 
-        $this->view->setVar('composants', $composantsData);
-        // Charger la vue
-        $this->view->pick('composant/index');
-    }
+        $viewContent .= '</tbody>';
+        $viewContent .= '</table>';
+        $viewContent .= '</div>';
 
+        return $viewContent;
+    }
 
 }
 

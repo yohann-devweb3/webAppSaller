@@ -1,25 +1,6 @@
 <?php $this->partial('partials/header'); ?>
 <div class="container">
-
-   <p>Liste des applications</p>
-    <table class="table">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Nom</th>
-        </tr>
-        </thead>
-        <tbody>
-        <?php
-        if (!empty($applications)) {
-            foreach ($applications as $row): ?>
-                <tr>
-                    <td><?php echo $row['id']; ?></td>
-                    <td><?php echo $row['nom']; ?></td>
-                </tr>
-            <?php endforeach;
-        } ?>
-        </tbody>
-    </table>
+    <?php /** @var TYPE_NAME $viewContent */
+    echo $viewContent;?>
 </div>
 

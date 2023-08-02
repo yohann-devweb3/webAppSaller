@@ -1,33 +1,8 @@
 <?php $this->partial('partials/header'); ?>
 <div class="container">
-
-   <p>Liste des composants</p>
-    <table class="table">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>Type</th>
-            <th>Charge</th>
-            <th>Progression</th>
-            <th>Désignation</th>
-            <th>Module</th>
-        </tr>
-        </thead>
-        <tbody>
-        <?php
-        if (!empty($composants)) {
-            foreach ($composants as $row): ?>
-                <tr>
-                    <td><?php echo $row['id']; ?></td>
-                    <td><?php echo $row['type']; ?></td>
-                    <td><?php echo $row['charge']; ?></td>
-                    <td><?php echo $row['progression']; ?></td>
-                    <td><?php echo $row['libelle']; ?></td>
-                    <td><?php echo $row['libelleModule']; ?></td>
-                </tr>
-            <?php endforeach;
-        } ?>
-
-        </tbody>
-    </table>
+    <?php /** @var TYPE_NAME $viewContent */
+    echo $viewContent;?>
 </div>
+
+
+

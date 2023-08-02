@@ -11,25 +11,37 @@ use Themys\Models\Application;
 class ApplicationController extends Controller
 {
 
-    public function indexAction($param=null)
+    public function indexAction($param = null)
     {
-        $applicationsData = [];
+        // Récupérer les applications
+        $applicationsData = Application::find();
 
-        // Charger les données du module pour chaque client
-        foreach (Application::find() as $application) {
+        // Construire le contenu de la vue sous forme de chaîne de caractères
+        $viewContent = $this->buildViewContent($applicationsData);
+
+        // Passer le contenu de la vue à la vue
+        $this->view->setVar( 'viewContent',$viewContent);
+    }
+
+    private function buildViewContent($applicationsData)
+    {
+        $viewContent = '<div class="container">';
+        $viewContent .= '<p>Liste des applications</p>';
+        $viewContent .= '<table class="table">';
+        $viewContent .= '<thead><tr><th>ID</th><th>Nom</th></tr></thead>';
+        $viewContent .= '<tbody>';
+
+        foreach ($applicationsData as $application) {
             $id = $application->getId();
             $nom = $application->getNom();
-
-            // Ajouter les données du client au tableau $clientData
-            $applicationsData[] = [
-                'id' => $id,
-                'nom' => $nom,
-            ];
+            $viewContent .= "<tr><td>{$id}</td><td>{$nom}</td></tr>";
         }
 
-        $this->view->setVar('applications', $applicationsData);
-        // Charger la vue
-        $this->view->pick('application/index');
+        $viewContent .= '</tbody>';
+        $viewContent .= '</table>';
+        $viewContent .= '</div>';
+
+        return $viewContent;
     }
 
 }
