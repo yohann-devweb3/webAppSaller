@@ -47,7 +47,12 @@
         </ul>
     </div>
 </nav>
-
+<script>
+    function redirect() {
+        // Replace 'collaborateur/index' with the desired route for the redirection
+        window.location.href = '<?= $this->url->get('themys/collaborateur/create') ?>';
+    }
+</script>
 <div class="container">
     <?= $this->getContent() ?>
 </div>

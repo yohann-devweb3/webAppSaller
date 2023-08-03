@@ -130,12 +130,7 @@ class Developpeur extends \Phalcon\Mvc\Model
     }
     public function getTranslateCompetence( ) : string
     {
-        switch ($this->getCompetence()){
-            case self::_NIVEAU_1_FRONTEND_:return 'FRONTEND';
-            case self::_NIVEAU_2_BACKEND_ :return 'BACKEND';
-            case self::_NIVEAU_3_DATABASE_:return 'DATABASE';
-            default : return 'Pas de competence' ;
-        }
+        return self::translateNiveauCompetence($this->getCompetence());
     }
     /**
      * Returns the value of field indice_production
@@ -201,5 +196,31 @@ class Developpeur extends \Phalcon\Mvc\Model
     {
         return parent::findFirst($parameters);
     }
+    public static function enumerateNiveauxCompetence()
+    {
+        return [
+            [
+                'id' => self::_NIVEAU_1_FRONTEND_,
+                'libelle' => self::translateNiveauCompetence(self::_NIVEAU_1_FRONTEND_)
+            ],
+            [
+                'id' => self::_NIVEAU_2_BACKEND_,
+                'libelle' => self::translateNiveauCompetence(self::_NIVEAU_2_BACKEND_)
+            ],
+            [
+                'id' => self::_NIVEAU_3_DATABASE_,
+                'libelle' => self::translateNiveauCompetence(self::_NIVEAU_3_DATABASE_)
+            ],
+        ];
+    }
 
+    private static function translateNiveauCompetence(int $niveau)
+    {
+        switch ($niveau){
+            case self::_NIVEAU_1_FRONTEND_:return 'FRONTEND';
+            case self::_NIVEAU_2_BACKEND_ :return 'BACKEND';
+            case self::_NIVEAU_3_DATABASE_:return 'DATABASE';
+            default : return 'Pas de niveau' ;
+        }
+    }
 }

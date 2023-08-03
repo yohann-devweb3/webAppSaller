@@ -1,0 +1,30 @@
+<?php $this->partial('partials/header'); ?>
+<div class="container">
+    <h2>Créer un nouveau développeur</h2>
+    <form action="<?= $this->url->get('themys/developpeur/create') ?>" method="post">
+
+        <div class="form-group">
+            <label for="niveau_competence">Equipe:</label>
+            <select name="niveau_competence" class="form-control">
+                <?php foreach ($this->view->equipe as $row) {
+                    echo '<option value="'.$row['id'].'">'.$row['libelle'].'</option>';
+                } ?>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="indiceProduction">Indice de production:</label>
+            <input type="number" class="form-control" id="indiceProduction" min="1" max="10" name="prime_embauche" value="1">
+        </div>
+
+            <div class="form-group">
+                <label for="niveau_competence">Niveau compétence:</label>
+                <select name="niveau_competence" class="form-control">
+                    <?php foreach ($this->view->niveauCompetence as $row) {
+                        echo '<option value="'.$row['id'].'">'.$row['libelle'].'</option>';
+                    } ?>
+                </select>
+            </div>
+        </div>
+        <input type="submit" class="btn btn-primary"  value="Creer"/>
+    </form>
+</div>

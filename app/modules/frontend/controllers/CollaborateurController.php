@@ -10,18 +10,18 @@ use Themys\Models\Projet;
 class CollaborateurController extends Controller
 {
 
-    public function indexAction($param=null)
+    public function indexAction()
     {
         $collaborateursData = [];
         $niveauCompetenceData= [];
 
-        foreach (COL as $collaborateur) {
+        foreach (Collaborateur::find()  as $collaborateur) {
             $niveauCompetence = $collaborateur->getNiveauCompetence();
 
             // Check if the niveauCompetence is not already in the array
             if (!in_array($niveauCompetence, $niveauCompetenceData)) {
                 // Add the distinct niveauCompetence to the array
-                $niveauxCompetence[] = $niveauCompetence;
+                $niveauCompetence[] = $niveauCompetence;
             }
         }
 
@@ -44,8 +44,7 @@ class CollaborateurController extends Controller
         }
 
         $this->view->setVar('collaborateurs', $collaborateursData);
-        // Charger la vue
-        $this->view->pick('collaborateur/index');
+        $this->view->setVar('niveauCompetence', $niveauCompetenceData);
 
     }
     public function createAction()
