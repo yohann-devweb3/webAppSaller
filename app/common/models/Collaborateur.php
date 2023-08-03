@@ -141,12 +141,7 @@ class Collaborateur extends \Phalcon\Mvc\Model
 
     public function translateNiveau( ) : string
     {
-        switch ($this->getNiveauCompetence()){
-            case self::_NIVEAU_1_STAGIAIRE_:return 'STAGIAIRE';
-            case self::_NIVEAU_2_JUNIOR_ :return 'JUNIOR';
-            case self::_NIVEAU_3_SENIOR_:return 'SENIOR';
-            default : return 'Pas de niveau' ;
-        }
+        return self::translateNiveauCompetence($this->getNiveauCompetence());
     }
     /**
      * Returns the value of field nom
@@ -201,4 +196,31 @@ class Collaborateur extends \Phalcon\Mvc\Model
         return parent::findFirst($parameters);
     }
 
+    public static function enumerateNiveauxCompetence()
+    {
+        return [
+            [
+                'id' => self::_NIVEAU_1_STAGIAIRE_,
+                'libelle' => self::translateNiveauCompetence(self::_NIVEAU_1_STAGIAIRE_)
+            ],
+            [
+                'id' => self::_NIVEAU_2_JUNIOR_,
+                'libelle' => self::translateNiveauCompetence(self::_NIVEAU_2_JUNIOR_)
+            ],
+            [
+                'id' => self::_NIVEAU_3_SENIOR_,
+                'libelle' => self::translateNiveauCompetence(self::_NIVEAU_3_SENIOR_)
+            ],
+        ];
+    }
+
+    private static function translateNiveauCompetence(int $niveau)
+    {
+        switch ($niveau){
+            case self::_NIVEAU_1_STAGIAIRE_:return 'STAGIAIRE';
+            case self::_NIVEAU_2_JUNIOR_ :return 'JUNIOR';
+            case self::_NIVEAU_3_SENIOR_:return 'SENIOR';
+            default : return 'Pas de niveau' ;
+        }
+    }
 }

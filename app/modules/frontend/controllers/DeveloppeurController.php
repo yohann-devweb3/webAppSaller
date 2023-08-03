@@ -17,19 +17,14 @@ class DeveloppeurController extends Controller
 
         // Charger les données du module pour chaque client
         foreach (Developpeur::find() as $developpeur) {
-            $id = $developpeur->getId();
-            $competence = $developpeur->getTranslateCompetence();
-            $indiceProduction = $developpeur->getIndiceProduction();
-            $idEquipe = $developpeur->Equipe->getLibelle();
-            $idCollaborateur = $developpeur->Collaborateur->getNom(). " ".$developpeur->Collaborateur->getPrenom();
 
             // Ajouter les données du client au tableau $clientData
-            $developpeursData[] = [
-                'id' => $id,
-                'competence' => $competence,
-                'indiceProduction'=> $indiceProduction,
-                'idEquipe' => $idEquipe,
-                'idCollaborateur'=>$idCollaborateur
+            $developpeursData [] = [
+                'id' => $developpeur->getId(),
+                'competence' => $developpeur->getTranslateCompetence(),
+                'indiceProduction'=> $developpeur->getIndiceProduction(),
+                'idEquipe' => $developpeur->Equipe->getLibelle(),
+                'idCollaborateur'=> $developpeur->Collaborateur->getNom(). " ".$developpeur->Collaborateur->getPrenom()
             ];
         }
 
